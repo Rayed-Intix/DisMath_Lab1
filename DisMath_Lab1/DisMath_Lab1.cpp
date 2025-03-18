@@ -8,6 +8,10 @@
 
 using namespace std;
 
+const float Task1CONST = 649;
+
+float AvgWord = 0;
+
 struct Node {
     char Char;
     int Freq;
@@ -65,6 +69,7 @@ void CreateHuffmanTable2Char(Node* _Current, string _Code, char _ToAdd) {
         CreateHuffmanTable2Char(_Current->Right, _Code, '1');
     }
     else {
+        AvgWord += (_Current->Freq / Task1CONST) * _Code.size();
         cout << _Current->Char << "\t" << _Code << endl;
     }
 }
@@ -83,6 +88,7 @@ void CreateHuffmanTable4Char(Node4Char* _Current, string _Code, char _ToAdd) {
         CreateHuffmanTable4Char(_Current->Fourth, _Code, '3');
     }
     else {
+        AvgWord += (_Current->Freq / Task1CONST) * _Code.size();
         cout << _Current->Char << "\t" << _Code << endl;
     }
 }
@@ -177,6 +183,9 @@ void Task1() {
 
     CreateHuffmanTable2Char(*ListTree.begin(), "", '\0');
 
+    cout << "Avg Word for Bin alphabet : " << AvgWord << "\n";
+    AvgWord = 0;
+
     
 
     cout << "\n\n\n";
@@ -185,6 +194,7 @@ void Task1() {
     cout << (*ListTree.begin())->Freq << '\n';
 
     CreateHuffmanTable4Char(*ListTree4Char.begin(), "", '\0');
+    cout << "Avg Word for Quat alphabet : " << AvgWord << "\n";
 }
 
 void Shuffle(string &_Str, vector<int> _Key) {
